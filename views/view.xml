@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_form" model="ir.actions.act_window">
+        <field name="name">Create Form</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">my.model</field>
+        <field name="view_mode">tree,form</field>
+
+    </record>
+    <record id="mymodel_tree_view" model="ir.ui.view">
+        <field name="name">my.model.tree</field>
+        <field name="model">my.model</field>
+        <field name="arch" type="xml">
+            <tree>
+
+                <field name="form_id" filter_domain="[('district','village_municipated', 'nam' ,[self])]"/>
+                <field name="nam"/>
+                <field name="village_municipated"/>
+                <field name="president"/>
+                <field name="mobile_number"/>
+                <field name="date"/>
+                <field name="emp_postion"/>
+                <field name="description"/>
+                <field name="training_group_name"/>
+                <field name="district"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="mymodel_form_view" model="ir.ui.view">
+        <field name="name">My Model view form</field>
+        <field name="model">my.model</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="reference" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+
+                        <group>
+                            <field name="reference"/>
+                            <field name="nam"/>
+                            <field name="president"/>
+                            <field name="mobile_number"/>
+                            <field name="date"/>
+
+
+                        </group>
+                        <group>
+                            
+                            <field name="district"/>
+                            <field name="village_municipated"/>
+                            <field name="emp_postion"/>
+                            <field name="description"/>
+                            <field name="training_group_name"/>
+
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Section1">
+                            <field name="line_ids" widget="section_and_note_one2many" mode="tree" context="{'default_my_id': active_id}">
+                                <tree string="Example Lines" editable="bottom">
+                                    <control>
+                                        <create name="add_line_control" string="Add a record"/>
+                                        <create name="add_section_control" string="Add a section" context="{'default_display_type': 'line_section'}"/>
+                                        <create name="add_note_control" string="Add a note" context="{'default_display_type': 'line_note'}"/>
+                                    </control>
+                                    <!-- <field name="sequence" widget="handle"/> -->
+                                    
+                                    <field name="name"/>
+                                    <field name="tole_name"/>
+                                    <field name="phone_num"/>
+                                    <field name="physically_disable"/>
+                                    <field name="form_fee"/>
+                                    <field name="sum_assured"/>
+                                    <field name="term" widget="selection"/>
+
+                                    <field name="premium_acount"/>
+                                    <!-- <field name="insurance_policy_no"/> -->
+                                    <field name="insurance_type" widget="many2many_tags"/>
+                                    <field name="certificate"/>
+                                    <field name="next_program_join_member"/>
+                                    <!-- <field name="price_total"/> -->
+
+
+                                </tree>
+                                  
+                            </field>
+                            <hr/>
+                             <group name="container_row_2">
+                                <group priority="1">
+                                    
+                                </group>
+                                <hr/>
+                                <group string="Total Amount" priority="2">
+                                    
+                                    
+                                    <field name="total_fee"/>
+                                    
+                                </group>
+                                
+                            </group>
+                        </page>
+                        <page string="Section2">
+
+                            <group name="container_row_2">
+                                <group string="मेसिन दिएको भए यहाँ चिन्ह लगाउनुहोस्" priority="1">
+                                    <field name="machine" attrs="{'invisible': [('not_machine','=',True)]}"/>
+                                    <field name="not_machine" attrs="{'invisible': [('machine','=',True)]}"/>
+                                    
+                                </group>
+                                <group priority="2">
+                                    <field name="related_field_president"/>
+                                    <field name="mobile_number_1"/>
+                                    <field name="treasurer_name"/>
+                                    <field name="treasurer_mobile"/>
+                                    <field name="secretary_name"/>
+                                    <field name="codinator_name"/>
+
+
+                                </group>
+                                <group>
+                                    <field name="total_soap"/>
+                                    <field name="lunch_expenses"/>
+
+                                </group>
+                            </group>
+
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+
+    </record>
+    <record id="action_insurance_type" model="ir.actions.act_window">
+        <field name="name">Create Form</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">insurance.type</field>
+        <field name="view_mode">tree,form</field>
+
+    </record>
+    <record id="insurance_type_tree_view" model="ir.ui.view">
+        <field name="name">insurance.type.tree</field>
+        <field name="model">insurance.type</field>
+        <field name="arch" type="xml">
+            <tree>
+
+                
+                <field name="display_type"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <record id="insurance_type_form_view" model="ir.ui.view">
+        <field name="name">insurance.type.form</field>
+        <field name="model">insurance.type</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet name="My model">
+                    <group>
+
+                        <group>
+                            <field name="display_type"/>
+
+                        </group>
+                        
+                    </group>
+                    
+                </sheet>
+            </form>
+        </field>
+
+    </record>
+    <menuitem id="menu_plan_root" name="Sano" sequence="10"/>
+    <menuitem id="menu_plan_star_root" name="Planstar" parent="menu_plan_root" sequence="10"/>
+    <menuitem id="menu_plan_star_root_conf" name="Configuration" parent="menu_plan_root" sequence="20"/>
+    <menuitem id="menu_planstar" name="planstar" parent="menu_plan_star_root" action="action_form" sequence="10"/>
+    <menuitem id="menu_plan_star_conf" name="Insurance Type" parent="menu_plan_star_root_conf" action="action_insurance_type" sequence="10"/>
+</odoo>
