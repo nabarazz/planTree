@@ -31,7 +31,7 @@ class MyModel(models.Model):
    treasurer_mobile = fields.Char('कोषाध्यक्षको फोन नम्बर', required=True)
    secretary_name = fields.Char('सचिबको नाम', required=True)
    codinator_name = fields.Char('उत्पादन संयोजक नाम', required=True)
-   machine = fields.Boolean('तालिम प्राप्त समूहलाई मेशिन', required=True)
+   machine = fields.Boolean('तालिम प्राप्त समूहलाई मेशिन छ', required=True)
    not_machine = fields.Boolean('तालिम प्राप्त समूहलाई मेशिन छैन', required=True)
    
    total_fee = fields.Float('total fee', compute='_amount_all')
@@ -103,13 +103,13 @@ class MyModelLine(models.Model):
    
    tole_name = fields.Char('पालिकाकोनाम/वडा.नम्बर/टोल', required=True)
    phone_num = fields.Char('फोन नम्बर', required=True)
-   physically_disable = fields.Boolean('अपाङ्ग संख्या', required=True)
+   physically_disable = fields.Boolean('अपाङ्ग संख्या')
    form_fee = fields.Float('फारम शुल्क', required=True)
    sum_assured = fields.Char('Sum Assured', required=True)
    term = fields.Integer('Term', required=True)
    total_amount = fields.Float('Total Amount', compute='_total_amount')
    insurance_policy_no = fields.Integer('Insurance No')
-   next_program_join_member = fields.Char('अर्को तालिम लिने इच्छुक', required=True)
+   next_program_join_member = fields.Char('अर्को तालिम लिने इच्छुक')
    certificate = fields.Boolean('Certificate', required=True)
    display_type = fields.Char(string="Insurance Type")
    term = fields.Selection(
