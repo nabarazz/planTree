@@ -10,29 +10,29 @@ class MyModel(models.Model):
    reference = fields.Char(string='Order Reference', required=True, copy=False, readonly=True,
                             default=lambda self: _('New'))
 
-   form_id = fields.Integer('सामाजिक परिचालकको नम्बर')
-   nam = fields.Char('सामाजिक परिचालिकको नाम')
-   district = fields.Char("district")
-   village_municipated = fields.Char('गाउँपालिकाको नाम')
+   form_id = fields.Integer('सामाजिक परिचलकको नम्बर')
+   nam = fields.Char('सामाजिक परिचलकको नाम' , required=True)
+   district = fields.Char("district", required=True)
+   village_municipated = fields.Char('गाउँपालिकाको नाम', required=True)
 
-   president= fields.Char('वडा अध्यक्षको नाम')
-   mobile_number= fields.Char('फोन नम्बर')
-   emp_postion = fields.Char('पद')
+   president= fields.Char('वडा अध्यक्षको नाम', required=True)
+   mobile_number= fields.Char('फोन नम्बर', required=True)
+   emp_postion = fields.Char('पद', required=True)
    
-   description= fields.Char('सहभागी प्रतिक्रिया बिवरण')
-   training_group_name= fields.Char('तालिम प्राप्त समुहको नाम')
+   description= fields.Char('सहभागी प्रतिक्रिया बिवरण', required=True)
+   training_group_name= fields.Char('तालिम प्राप्त समुहको नाम', required=True)
   
-   date= fields.Date('मिति')
-   total_soap = fields.Integer('उत्पादन साबुनको संख्या')
-   lunch_expenses = fields.Float('खाजा खर्च')
-   related_field_president = fields.Char('परियोजना समूहको अध्यक्षको नाम')
-   mobile_number_1= fields.Char('फोन नम्बर')
-   treasurer_name = fields.Char('कोषाध्यक्षको नाम')
-   treasurer_mobile = fields.Char('कोषाध्यक्षको फोन नम्बर')
-   secretary_name = fields.Char('सचिबको नाम')
-   codinator_name = fields.Char('उत्पादन संयोजक नाम')
-   machine = fields.Boolean('तालिम प्राप्त समूहलाई मेशिन')
-   not_machine = fields.Boolean('तालिम प्राप्त समूहलाई मेशिन छैन')
+   date= fields.Date('मिति', required=True)
+   total_soap = fields.Integer('उत्पादन साबुनको संख्या', required=True)
+   lunch_expenses = fields.Float('खाजा खर्च', required=True)
+   related_field_president = fields.Char('परियोजना समूहको अध्यक्षको नाम', required=True)
+   mobile_number_1= fields.Char('फोन नम्बर', required=True)
+   treasurer_name = fields.Char('कोषाध्यक्षको नाम', required=True)
+   treasurer_mobile = fields.Char('कोषाध्यक्षको फोन नम्बर', required=True)
+   secretary_name = fields.Char('सचिबको नाम', required=True)
+   codinator_name = fields.Char('उत्पादन संयोजक नाम', required=True)
+   machine = fields.Boolean('तालिम प्राप्त समूहलाई मेशिन', required=True)
+   not_machine = fields.Boolean('तालिम प्राप्त समूहलाई मेशिन छैन', required=True)
    
    total_fee = fields.Float('total fee', compute='_amount_all')
    
@@ -99,18 +99,18 @@ class MyModelLine(models.Model):
    _description = "My model line example"
 
   
-   name = fields.Many2one('res.partner', 'सीप प्राप्त सदस्यको नाम')
+   name = fields.Many2one('res.partner', 'सीप प्राप्त सदस्यको नाम', required=True)
    
-   tole_name = fields.Char('पालिकाकोनाम/वडा.नम्बर/टोल')
-   phone_num = fields.Char('फोन नम्बर')
-   physically_disable = fields.Boolean('अपाङ्ग संख्या')
-   form_fee = fields.Float('फारम शुल्क')
-   sum_assured = fields.Char('Sum Assured')
-   term = fields.Integer('Term')
+   tole_name = fields.Char('पालिकाकोनाम/वडा.नम्बर/टोल', required=True)
+   phone_num = fields.Char('फोन नम्बर', required=True)
+   physically_disable = fields.Boolean('अपाङ्ग संख्या', required=True)
+   form_fee = fields.Float('फारम शुल्क', required=True)
+   sum_assured = fields.Char('Sum Assured', required=True)
+   term = fields.Integer('Term', required=True)
    total_amount = fields.Float('Total Amount', compute='_total_amount')
    insurance_policy_no = fields.Integer('Insurance No')
-   next_program_join_member = fields.Char('अर्को तालिम लिने इच्छुक')
-   certificate = fields.Boolean('Certificate')
+   next_program_join_member = fields.Char('अर्को तालिम लिने इच्छुक', required=True)
+   certificate = fields.Boolean('Certificate', required=True)
    display_type = fields.Char(string="Insurance Type")
    term = fields.Selection(
        [
@@ -134,9 +134,9 @@ class MyModelLine(models.Model):
         ('18','18'),
         ('19','19'),
         ('20','20'),
-        ], default='1', string='Term')
-   insurance_type = fields.Many2many('insurance.type', 'display_type', string="insurance_type")
-   premium_acount = fields.Float('Premium Amount')
+        ], default='1', string='Term', required=True)
+   insurance_type = fields.Many2many('insurance.type', 'display_type', string="insurance_type", required=True)
+   premium_acount = fields.Float('Premium Amount', required=True)
    sum_assort = fields.Float('Sum Assort')
    price_total = fields.Float(compute='_compute_amount', string='Total', store=True)
 
